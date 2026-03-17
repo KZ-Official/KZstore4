@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KZStore</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
+
+background:
+repeating-linear-gradient(
+90deg,
+#00ffff22 0px,
+#00ffff22 2px,
+transparent 2px,
+transparent 40px
+);
+
+animation:movebg 6s linear infinite;
+}
+
+@keyframes movebg{
+0%{background-position:0 0;}
+100%{background-position:200px 0;}
+}
+
+/* INTRO */
+
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+animation:fadeout 2s ease 3s forwards;
+}
+
+#intro img{
+width:250px;
+animation:logoanim 3s ease;
+filter:drop-shadow(0 0 20px cyan);
+}
+
+@keyframes logoanim{
+
+0%{
+transform:scale(0) rotate(-30deg);
+opacity:0;
+}
+
+50%{
+transform:scale(1.2) rotate(5deg);
+opacity:1;
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+@keyframes fadeout{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* overlay */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+z-index:0;
+}
+
+body *{
+position:relative;
+z-index:1;
+}
+
+h1{
+margin-top:30px;
+font-size:40px;
+letter-spacing:3px;
+text-shadow:0 0 20px cyan;
+}
+
+.container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+/* card produk */
+
+.card{
+background:rgba(0,0,0,0.6);
+border-radius:15px;
+padding:20px;
+margin:20px;
+width:220px;
+
+box-shadow:
+0 0 10px cyan,
+0 0 20px cyan,
+0 0 40px cyan;
+
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+
+box-shadow:
+0 0 20px magenta,
+0 0 40px magenta,
+0 0 80px magenta;
+}
+
+/* gambar produk */
+
+.product-img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+box-shadow:0 0 10px cyan;
+transition:0.3s;
+}
+
+.product-img:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px magenta;
+}
+
+button{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#00ffcc;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* popup qris */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+}
+
+.popup img{
+margin-top:120px;
+width:250px;
+border-radius:10px;
+box-shadow:0 0 20px cyan;
+}
+
+.close{
+font-size:30px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div id="intro">
+<img src="kocakjir.png">
+<h2 style="color:cyan">KZSTORE REBEL CITY</h2>
+</div>
+
+</body>
+
+<h1>KZStore</h1>
+
+<div class="container">
+
+<div class="card">
+<img src="tobaco.png" class="product-img">
+<h2>1 Backpack Tobaco</h2>
+<p>Rp 15.000</p>
+<button onclick="beli('qris15.jpg')">BELI</button>
+</div>
+
+<div class="card">
+<img src="ak47.png" class="product-img">
+<h2>1 Backpack AK47</h2>
+<p>Rp 15.000</p>
+<button onclick="beli('qris20.jpg')">BELI</button>
+</div>
+
+<div class="card">
+<img src="awp.png" class="product-img">
+<h2>1 Backpack AWP</h2>
+<p>Rp 25.000</p>
+<button onclick="beli('qris25.jpg')">BELI</button>
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+<span class="close" onclick="tutup()">X</span>
+<br>
+<img id="qrisgambar">
+<p>Scan QRIS untuk pembayaran</p>
+</div>
+
+<script>
+
+function beli(gambar){
+document.getElementById("popup").style.display="block";
+document.getElementById("qrisgambar").src=gambar;
+}
+
+function tutup(){
+document.getElementById("popup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
